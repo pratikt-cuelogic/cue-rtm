@@ -7,9 +7,9 @@ Installing cuertm
 -------------------
 Supported platform: Lunux, Mac, Windows ( not tested )
 
-    $ curl -OL https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh
-    $ chmod +x gitflow-installer.sh
-    $ sudo ./gitflow-installer.sh
+    $ curl -OL https://raw.githubusercontent.com/pratikt-cuelogic/cue-rtm/master/cuertm-installer.sh
+    $ chmod +x cuertm-installer.sh
+    $ sudo ./cuertm-installer.sh
     
 Usage
 -------------------
