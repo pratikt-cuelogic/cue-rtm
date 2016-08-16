@@ -8,8 +8,8 @@ Installing cuertm
 Supported platform: Lunux, Mac, Windows ( not tested )
 
     $ curl -OL https://raw.githubusercontent.com/pratikt-cuelogic/cue-rtm/master/cuertm-installer.sh
-    $ chmod +x cuertm-installer.sh
-    $ sudo ./cuertm-installer.sh
+    $ chmod 0777 cuertm-installer.sh
+    $ ./cuertm-installer.sh
     
 Usage
 -------------------
