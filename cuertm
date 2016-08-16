@@ -44,7 +44,8 @@ if  [ "$1" = "init" ]; then
 	fi
 	# Finish pre-commit hook
 	EOF
-
+	
+	chmod 0777 .git/hooks/pre-commit 
 	echo "Repository is configured for auto update RTM document..."
 	exit 1;
 fi
