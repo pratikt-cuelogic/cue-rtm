@@ -1,0 +1,61 @@
+#/bin/bash
+if  [ "$1" = "init" ]; then 
+	if [ ! -d .git ]; then
+		echo "This is not a git repository, exiting.."
+		exit 1;
+	fi;
+	RTMREF=".git/rtmreferences.config"
+	echo -n "">>$RTMREF;
+	TAB="$(printf '\t')"
+	cat <<-EOF>.git/hooks/pre-commit
+	#!/bin/bash
+	# Pre commit check references for RTM Document and update Doc
+	RTMAPIURL="https://script.google.com/macros/s/AKfycbzl0p_ecNw087aLDFnIo7HdpPIUfuw_06t86ClhJ-95Ly4JOYda/exec";
+	current_branch=\$(git symbolic-ref --short HEAD);
+	REF_EXIST=0
+
+	RTM_REF=\`cat .git/rtmreferences.config\`
+	IFS=";" read -ra REFERENCES <<< "\$RTM_REF"
+	for i in "\${REFERENCES[@]}"
+	do
+	${TAB}ref_branch=\${i%:*}
+	${TAB}if  [ "\$ref_branch" = "\$current_branch" ]; then 
+	${TAB}${TAB}REF_EXIST=\${i##*:};
+	${TAB}fi
+	done
+
+	if  [ "\$REF_EXIST" != "0" ]
+	then 
+	${TAB}echo "Reference for \$current_branch branch is \$REF_EXIST, updating RTM at google drive"
+		
+	${TAB}while read st file; do
+	${TAB}${TAB}if [ "\$st" == 'D' ]; then continue; fi
+	${TAB}${TAB}if [ "\$UPDATED_FILES" == "" ]; then 
+	${TAB}${TAB}${TAB}UPDATED_FILES=\$file
+	${TAB}${TAB}${TAB}continue;
+	${TAB}${TAB}fi	
+	${TAB}${TAB}UPDATED_FILES="\$UPDATED_FILES,\$file"
+	${TAB}done <<< "\$(git diff --cached --name-status)"
+	${TAB}curl --data "cell_no=\$REF_EXIST&files=\$UPDATED_FILES" \$RTMAPIURL > r.log;
+	else
+	${TAB}echo "Unable to find reference for \$current_branch branch, please run following command to specify"
+	${TAB}echo "cuertm link <branchname> <cellno>"
+	${TAB}exit 1
+	fi
+	# Finish pre-commit hook
+	EOF
+
+	echo "Repository is configured for auto update RTM document..."
+	exit 1;
+fi
+
+if  [ "$1" != "link" ] || [ "$2" = "" ] || [ "$3" = "" ]
+then 
+	echo "Please enter valid command"
+	echo "cuertm link <branchname> <cellno>"
+else
+    RTMREF=".git/rtmreferences.config"
+	logthisref="$2:$3;"
+	echo -n $logthisref>>$RTMREF
+	echo "RTM reference is stored for future usage, we will update the document on each commit operation"
+fi
