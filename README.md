@@ -22,6 +22,8 @@ To initialize a new repo to use cuertm, use:
 		cuertm init
 
 This will then interactively prompt you to with some questions such as provide spreadsheet ID (stored @googledrive) where you are mainitaining RTM doco. As we are using google script to update spreadsheet make sure google script ( or account which is hosting that script ) has access to that spreadsheet.
+If you want to host your google script at your end please download [update-rtm-spreadsheet.gs](https://github.com/pratikt-cuelogic/cue-rtm/blob/master/update-rtm-spreadsheet.gs) and follow the instructions specified within.
+
 Once initialize, it will not allow user to commit anything unless RTM cell reference is specified.
 
 ### Link Branch to particular RTM cell
@@ -31,6 +33,14 @@ To link a new/existing branch to RTM cell, use:
 		cuertm link <branchname> <cell_number>
 		
 
+### Hostiong Google Script @your account
+
+		download [update-rtm-spreadsheet.gs](https://github.com/pratikt-cuelogic/cue-rtm/blob/master/update-rtm-spreadsheet.gs)
+		Goto [google script](https://script.google.com) and save it as <filename>.js ( dont forget to change OkrSpreadsheetId :) )
+		Publish > Deploy as web app
+		Copy "Current web app URL", which you can configure with cuertm tool ( update cuertm file )
+		
+		
 Please help out
 ---------------
 This project is still under development. Feedback and suggestions are very
