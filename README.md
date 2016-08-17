@@ -37,3 +37,5 @@ This project is still under development. Feedback and suggestions are very
 welcome and I encourage you to use the [Issues
 list](https://github.com/pratikt-cuelogic/cue-rtm/issues) on Github to provide that
 feedback.
+
+Feel free to fork this repo and to commit your additions.
