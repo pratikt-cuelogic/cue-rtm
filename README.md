@@ -35,8 +35,8 @@ To link a new/existing branch to RTM cell, use:
 
 ### Hostiong Google Script @your account
 
-		download [update-rtm-spreadsheet.gs](https://github.com/pratikt-cuelogic/cue-rtm/blob/master/update-rtm-spreadsheet.gs)
-		Goto [google script](https://script.google.com) and save it as <filename>.js ( dont forget to change OkrSpreadsheetId :) )
+		download https://github.com/pratikt-cuelogic/cue-rtm/blob/master/update-rtm-spreadsheet.gs
+		Goto https://script.google.com and save it as <filename>.js ( dont forget to change OkrSpreadsheetId :) )
 		Publish > Deploy as web app
 		Copy "Current web app URL", which you can configure with cuertm tool ( update cuertm file )
 		
